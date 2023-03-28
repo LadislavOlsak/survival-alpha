@@ -1,0 +1,14 @@
+1) Herní módy:
+
+a) Singleplayer
+
+- spíše jen kratší test na vytvoření různých map, kde hráč musí najít východ dříve, než ho zbaští nastvůra + k nalezení východu bude potřeba sbírat předměty + zbraně na odehnání příšery?
+
+b) Multiplayer
+
+- kooperace na singlových mapách s obtížněním úkolů
+- royal battle na schovku před příšerou/příšerami
+- modifikace poslední přeživší se stane superpříšerou a bude honit ostatní
+- tým, který zničí více příšer / superpříšeru vyhrává
+- capture the flag s příšreou hlídající předmět
+
