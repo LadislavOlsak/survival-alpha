@@ -5,6 +5,7 @@ using UnityEngine;
 public class MaleeSystem : MonoBehaviour
 {
     public int theDamage = 50;
+    public float maxDistance = 1.5f;
     
     float distance;
 
@@ -23,7 +24,10 @@ public class MaleeSystem : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit))
             {
                 distance = hit.distance;
-                hit.transform.SendMessage("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
+                if (distance <= maxDistance)
+                {
+                    hit.transform.SendMessage("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
+                }
             }
         }
         
