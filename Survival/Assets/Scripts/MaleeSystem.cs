@@ -21,7 +21,10 @@ public class MaleeSystem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            theMace.GetComponent<Animator>().Play("Attack");
+            // attack animation
+            theMace.GetComponent<Animator>().SetTrigger("Attack");
+
+            // attack function
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit))
             {
@@ -33,5 +36,15 @@ public class MaleeSystem : MonoBehaviour
             }
         }
         
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            theMace.GetComponent<Animator>().SetTrigger("Sprint");
+            theMace.GetComponent<Animator>().SetBool("IsSprinting", true);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            theMace.GetComponent<Animator>().SetTrigger("Stop Sprint");
+            theMace.GetComponent<Animator>().SetBool("IsSprinting", false);
+        }
     }
 }
