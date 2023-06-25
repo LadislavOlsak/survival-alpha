@@ -16,16 +16,17 @@ public class EnemyLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
-        {
-            Dead();
-        }
+        
     }
 
     public void ApplyDamage(int theDamage)
     {
         health -= theDamage;
-    }
+		if (health <= 0)
+		{
+			Dead();
+		}
+	}
     public void Dead()
     {
         Destroy(gameObject);

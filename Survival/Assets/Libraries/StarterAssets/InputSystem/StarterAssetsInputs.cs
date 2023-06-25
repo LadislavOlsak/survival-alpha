@@ -12,6 +12,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		public bool crouch;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -23,6 +24,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
 		{
+			Debug.Log("Change move");
 			MoveInput(value.Get<Vector2>());
 		}
 
@@ -36,11 +38,19 @@ namespace StarterAssets
 
 		public void OnJump(InputValue value)
 		{
+			Debug.Log("Change jump");
 			JumpInput(value.isPressed);
+		}
+
+		public void OnCrouch(InputValue value)
+		{
+			Debug.Log("Change crouch");
+			CrouchInput(value.isPressed);
 		}
 
 		public void OnSprint(InputValue value)
 		{
+			Debug.Log("Change sprint");
 			SprintInput(value.isPressed);
 		}
 #endif
@@ -59,6 +69,11 @@ namespace StarterAssets
 		public void JumpInput(bool newJumpState)
 		{
 			jump = newJumpState;
+		}
+
+		public void CrouchInput(bool newCrouchState)
+		{
+			crouch = newCrouchState;
 		}
 
 		public void SprintInput(bool newSprintState)

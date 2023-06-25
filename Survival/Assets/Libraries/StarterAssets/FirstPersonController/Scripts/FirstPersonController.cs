@@ -113,8 +113,10 @@ namespace StarterAssets
 		private void Update()
 		{
 			JumpAndGravity();
+			Crouch();
 			GroundedCheck();
 			Move();
+			
 		}
 
 		private void LateUpdate()
@@ -244,6 +246,15 @@ namespace StarterAssets
 			{
 				_verticalVelocity += Gravity * Time.deltaTime;
 			}
+		}
+
+		private void Crouch()
+		{
+			if (_input.crouch)
+			{
+				Debug.Log("Crouch");
+			}
+			
 		}
 
 		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
