@@ -11,6 +11,8 @@ public class RespawnMenu : MonoBehaviour
 	public bool playerIsDead = false;
 	public GameObject respawnMenu;
 
+	public Transform respawnTransform;
+
 	// Start is called before the first frame update
 	void Start()
     {
@@ -37,13 +39,23 @@ public class RespawnMenu : MonoBehaviour
 
 			//if (GUI.Button(new Rect(Screen.width * 0.5f - 50, 250 - 20, 100, 40), "Menu"))
 			//	Debug.Log("Menu");
+		} else
+		{
+			respawnMenu.SetActive(false);
+			inputController.cursorLocked = true;
 		}
         
 	}
 
 	public void PlayerRespawn()
 	{
-        Debug.Log("Respawn player");
+		transform.position = respawnTransform.position;
+		transform.rotation = respawnTransform.rotation;
+		gameObject.SendMessage("RespawnStats");
+		fpsController.enabled = true;
+		playerIsDead = false;
+
+		Debug.Log("Respawn player");
 	}
 
 	public void PlayerMenu()

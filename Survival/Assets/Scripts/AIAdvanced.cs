@@ -22,6 +22,8 @@ public class AIAdvanced : MonoBehaviour
 
 	public float theDamage = 40f;
 
+	public RespawnMenu respawnMenu;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -31,26 +33,30 @@ public class AIAdvanced : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		Distance = Vector3.Distance(Target.transform.position, transform.position);
-		//Debug.Log(Distance);
+		if (!respawnMenu.playerIsDead)
+		{
+			Distance = Vector3.Distance(Target.transform.position, transform.position);
+			//Debug.Log(Distance);
 
-		if (Distance < LookAtDistance)
-		{
-			LookAt();
-		}
-		if (Distance > LookAtDistance)
-		{
-			GetComponent<Renderer>().material.color = Color.green;
-		}
+			if (Distance < LookAtDistance)
+			{
+				LookAt();
+			}
+			if (Distance > LookAtDistance)
+			{
+				GetComponent<Renderer>().material.color = Color.green;
+			}
 
-		if (Distance < AttackRange)
-		{
-			Attack();
+			if (Distance < AttackRange)
+			{
+				Attack();
+			}
+			else if (Distance < ChaseRange)
+			{
+				Chase();
+			}
 		}
-		else if (Distance < ChaseRange)
-		{
-			Chase();
-		}
+		
 	}
 
 	private void LookAt()
