@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,14 @@ public class PlayerStats : MonoBehaviour
     {
         
     }
+
+	public void CalculateFallDamage(float fallHeight, float damageTreshold)
+	{
+		if (fallHeight >= damageTreshold)
+		{
+			ApplyDamage((int)Math.Round(fallHeight * fallHeight));
+		}
+	}
 
 	public void ApplyDamage(int theDamage)
 	{

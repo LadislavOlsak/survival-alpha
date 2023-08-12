@@ -61,7 +61,7 @@ public class TOD : MonoBehaviour
 			slider = 0;
 		}
 
-		slider = GUI.HorizontalSlider(new Rect(20, 20, 200, 30), slider, 0, 1.0f);
+		//slider = GUI.HorizontalSlider(new Rect(20, 20, 200, 30), slider, 0, 1.0f);
 		Hour = slider * 24;
 		Tod = slider2 * 24;
 		sun.transform.localEulerAngles = new Vector3((slider * 360) - 90, 0, 0);
@@ -72,7 +72,9 @@ public class TOD : MonoBehaviour
 		//Uncheck IncludeWater if you are not interested in using this.
 		if (IncludeWater == true)
 		{
-			Water.GetComponent<Renderer>().material.SetColor("_horizonColor", Color.Lerp(WaterNight, WaterDay, slider2 * 2 - 0.2f));
+			//Water.GetComponent<Renderer>().material.SetColor("_SpecColor", Color.Lerp(WaterNight, WaterDay, slider2 * 2 - 0.2f));
+			//Water.GetComponent<Renderer>().material.SetColor("_AlbedoColor", Color.Lerp(WaterNight, WaterDay, slider2 * 2 - 0.2f));
+			Water.GetComponent<Renderer>().material.SetColor("_ReflectionColor", Color.Lerp(WaterNight, WaterDay, slider2 * 2 - 0.2f));
 		}
 
 		if (slider < 0.5)

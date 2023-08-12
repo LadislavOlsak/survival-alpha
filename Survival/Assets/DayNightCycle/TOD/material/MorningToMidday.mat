@@ -75,7 +75,7 @@ Material:
     m_Floats:
     - _Blend: 1
     m_Colors:
-    - _Tint: {r: 0.51887625, g: 0.000004699855, b: 0.0745389, a: 0}
+    - _Tint: {r: 0.5469174, g: 0.01580648, b: 0.18364266, a: 0}
   m_BuildTextureStacks: []
 --- !u!1002 &2100001
 EditorExtensionImpl:

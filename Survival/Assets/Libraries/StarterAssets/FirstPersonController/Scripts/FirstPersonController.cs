@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -11,6 +12,8 @@ namespace StarterAssets
 #endif
 	public class FirstPersonController : MonoBehaviour
 	{
+		public GameObject playerCapsule; 
+
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;
@@ -42,6 +45,11 @@ namespace StarterAssets
 		public float GroundedRadius = 0.5f;
 		[Tooltip("What layers the character uses as ground")]
 		public LayerMask GroundLayers;
+
+		private Vector3 PlayerFormerPosition;
+		public float PlayersFall = 0.0f;
+		public bool EnambleFallDamage = true;
+		private float DamageTrashold = 5.0f;
 
 		[Header("Cinemachine")]
 		[Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
@@ -128,7 +136,26 @@ namespace StarterAssets
 		{
 			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+			var formerGrounded = Grounded;
 			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+
+			if (formerGrounded && !Grounded)
+			{
+				this.PlayerFormerPosition = playerCapsule.transform.position;
+				//Debug.Log("fall: " + this.playerFormerPosition);
+			}
+			if (!formerGrounded && Grounded)
+			{
+				//Debug.Log("grounded: " + playerCapsule.transform.position);
+				this.PlayersFall = this.PlayerFormerPosition.y - playerCapsule.transform.position.y;
+				var playerStats = playerCapsule.GetComponent<PlayerStats>();
+				
+				if (this.EnambleFallDamage)
+					playerStats.CalculateFallDamage(this.PlayersFall, this.DamageTrashold);
+
+			}
+
+
 		}
 
 		private void CameraRotation()
